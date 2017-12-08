@@ -25,7 +25,7 @@ echo "$(head -1 $file);Found"
 #skip the header
 tail -n +2 $file | while read line
 do
-    url=$(echo $line | cut -d $sep -f $col)
+    url=$(echo $line | cut -d $sep -f $col | tr -d '"')
     code=$(curl -I -L -s -o /dev/null -w "%{http_code}" $url)
     if [ $code == 200 ]
     then
