@@ -10,14 +10,15 @@ then
     exit -1
 fi
 
-file=$1
-col=$2
 if [ -z $3 ]
 then
     sep=';'
 else
     sep=$3
 fi
+
+file=$1
+col=$2
 
 #rewrite the header with an extra field at the end
 echo "$(head -1 $file);Found"
