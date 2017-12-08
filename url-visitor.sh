@@ -14,7 +14,7 @@ file=$1
 col=$2
 
 #rewrite the header with an extra field at the end
-echo "$(head -1 $file);present in springer link"
+echo "$(head -1 $file);Found"
 
 #skip the header
 tail -n +2 $file | while read line
@@ -23,9 +23,9 @@ do
     code=$(curl -I -L -s -o /dev/null -w "%{http_code}" $url)
     if [ $code == 200 ]
     then
-        present=true
+        found=true
     else
-        present=false
+        found=false
     fi
-    echo "$line;$present"
+    echo "$line;$found"
 done
