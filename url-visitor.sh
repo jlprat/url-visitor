@@ -12,6 +12,12 @@ fi
 
 file=$1
 col=$2
+if [ -z $3 ]
+then
+    sep=';'
+else
+    sep=$3
+fi
 
 #rewrite the header with an extra field at the end
 echo "$(head -1 $file);Found"
@@ -19,7 +25,7 @@ echo "$(head -1 $file);Found"
 #skip the header
 tail -n +2 $file | while read line
 do
-    url=$(echo $line | cut -d ';' -f $col)
+    url=$(echo $line | cut -d $sep -f $col)
     code=$(curl -I -L -s -o /dev/null -w "%{http_code}" $url)
     if [ $code == 200 ]
     then
