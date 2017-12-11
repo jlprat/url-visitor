@@ -21,7 +21,7 @@ file=$1
 col=$2
 
 #rewrite the header with an extra field at the end
-echo "$(head -1 $file);Found"
+echo "$(head -1 $file)${sep}Found"
 
 #skip the header
 tail -n +2 $file | while read line
@@ -34,5 +34,5 @@ do
     else
         found=false
     fi
-    echo "$line;$found"
+    echo "$line$sep$found"
 done
